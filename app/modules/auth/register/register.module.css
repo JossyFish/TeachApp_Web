@@ -214,7 +214,6 @@
 
 /* ====== CONTROLS ====== */
 
-/* Desktop Controls (Theme + Language) */
 .desktopControls {
   display: none;
   position: absolute;
@@ -225,12 +224,11 @@
   gap: 8px;
 }
 
-/* Mobile Header */
 .mobileHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .mobileLogo {
@@ -265,38 +263,48 @@
   gap: 8px;
 }
 
-/* Theme Toggle */
-.themeToggle {
+/* ====== STEP INDICATOR ====== */
+.stepIndicator {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-secondary);
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
 
-.themeToggle:hover {
-  border-color: #2563eb;
-  color: var(--text-primary);
-  background: var(--bg-primary);
+.stepDots {
+  display: flex;
+  gap: 6px;
+}
+
+.stepDot {
+  width: 32px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.stepDotActive {
+  background: #2563eb;
+  width: 48px;
+}
+
+.stepText {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 /* ====== FORM HEADER ====== */
 .formHeader {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .formTitle {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   transition: color 0.3s ease;
 }
 
@@ -362,6 +370,12 @@
   gap: 16px;
 }
 
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
 .field {
   display: flex;
   flex-direction: column;
@@ -377,15 +391,21 @@
   transition: color 0.3s ease;
 }
 
-.fieldHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
 }
 
 .fieldInput {
   width: 100%;
-  padding: 12px 16px;
+  padding: 12px 16px 12px 40px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -407,6 +427,10 @@
   position: relative;
 }
 
+.passwordWrapper .fieldInput {
+  padding-right: 40px;
+}
+
 .passwordToggle {
   position: absolute;
   right: 12px;
@@ -424,43 +448,81 @@
   color: var(--text-primary);
 }
 
-.forgotLink {
-  background: none;
-  border: none;
-  color: #2563eb;
-  font-size: 11px;
-  cursor: pointer;
-  transition: color 0.3s ease;
+.inputCheck {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #10b981;
 }
 
-.forgotLink:hover {
-  color: #1d4ed8;
-}
-
-.rememberMe {
+.passwordStrength {
   display: flex;
   align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.strengthBar {
+  flex: 1;
+  height: 4px;
+  background: var(--border-color);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.strengthFill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #10b981);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.strengthText {
+  font-size: 10px;
+  color: #10b981;
+  font-weight: 500;
+}
+
+/* Back Button */
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+  width: fit-content;
+}
+
+.backButton:hover {
+  color: var(--text-primary);
+}
+
+/* Terms */
+.terms {
+  margin: 4px 0;
+}
+
+.termsLabel {
+  display: flex;
+  align-items: flex-start;
   gap: 10px;
   font-size: 12px;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 4px 0;
   transition: color 0.3s ease;
 }
 
-.checkbox {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  border: 2px solid #2563eb;
-  background: #2563eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: white;
+.termsLabel .checkbox {
+  margin-top: 1px;
 }
 
+/* Submit Button */
 .submitButton {
   width: 100%;
   padding: 14px;
@@ -471,7 +533,7 @@
   color: white;
   cursor: pointer;
   transition: opacity 0.2s;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .submitButton:hover {
@@ -585,7 +647,6 @@
    ====== RESPONSIVE ======
    ============================================================ */
 
-/* ====== DESKTOP (1024px+) ====== */
 @media (min-width: 1024px) {
   .brandPanel {
     display: flex;
@@ -605,7 +666,6 @@
   }
 }
 
-/* ====== TABLET (768px - 1023px) ====== */
 @media (min-width: 768px) and (max-width: 1023px) {
   .brandPanel {
     display: none;
@@ -633,7 +693,6 @@
   }
 }
 
-/* ====== MOBILE (< 768px) ====== */
 @media (max-width: 767px) {
   .brandPanel {
     display: none;
@@ -655,7 +714,7 @@
   .formPanel {
     padding: 20px 16px;
     align-items: flex-start;
-    padding-top: 30px;
+    padding-top: 24px;
   }
 
   .formWrapper {
@@ -663,11 +722,16 @@
   }
 
   .formTitle {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .formSubtitle {
     font-size: 13px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .roleButtons {
@@ -684,11 +748,11 @@
   }
 
   .formHeader {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .fieldInput {
-    padding: 10px 14px;
+    padding: 10px 14px 10px 36px;
     font-size: 13px;
   }
 
@@ -719,22 +783,23 @@
     gap: 6px;
   }
 
-  .themeToggle {
-    width: 34px;
-    height: 34px;
+  .stepDot {
+    width: 24px;
   }
 
-  .themeToggle svg {
-    width: 16px;
-    height: 16px;
+  .stepDotActive {
+    width: 36px;
+  }
+
+  .stepIndicator {
+    margin-bottom: 18px;
   }
 }
 
-/* ====== VERY SMALL MOBILE (< 400px) ====== */
 @media (max-width: 400px) {
   .formPanel {
     padding: 16px 12px;
-    padding-top: 24px;
+    padding-top: 16px;
   }
 
   .formTitle {
@@ -753,20 +818,161 @@
   }
 
   .mobileHeader {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .mobileControls {
     gap: 4px;
   }
 
-  .themeToggle {
-    width: 30px;
-    height: 30px;
+  .stepDot {
+    width: 20px;
   }
 
-  .themeToggle svg {
-    width: 14px;
-    height: 14px;
+  .stepDotActive {
+    width: 28px;
   }
+}
+/* ====== PAYMENT SECTION ====== */
+.paymentSection {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px 0;
+}
+
+.paymentHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+/* ====== SUBSCRIPTION SECTION ====== */
+.subscriptionSection {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px 0;
+}
+
+.subscriptionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.subscriptionOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subscriptionOption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--bg-primary);
+}
+
+.subscriptionOption:hover {
+  border-color: #2563eb;
+}
+
+.subscriptionOptionActive {
+  border-color: #2563eb;
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.subscriptionOption input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.subscriptionOption input[type="radio"]:checked {
+  border-color: #2563eb;
+}
+
+.subscriptionOption input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #2563eb;
+  border-radius: 50%;
+}
+
+.subscriptionName {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.subscriptionPrice {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.subscriptionDesc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.subscriptionBadge {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  background: #10b981;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.subscriptionTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px solid var(--border-color);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.subscriptionTotalPrice {
+  font-size: 18px;
+  color: #2563eb;
+}
+
+.subscriptionTotalPeriod {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
 }

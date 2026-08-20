@@ -3,6 +3,39 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  
+  --brand-bg-start: #f0f4ff;
+  --brand-bg-mid: #e8edf8;
+  --brand-bg-end: #dce3f0;
+  --brand-text: #0f172a;
+  --brand-subtext: rgba(15, 23, 42, 0.6);
+  --brand-border: rgba(15, 23, 42, 0.08);
+  --brand-testimonial-bg: rgba(15, 23, 42, 0.04);
+  --brand-testimonial-border: rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  
+  --brand-bg-start: #0a1628;
+  --brand-bg-mid: #0c1a30;
+  --brand-bg-end: #0f2345;
+  --brand-text: #f1f5f9;
+  --brand-subtext: rgba(191, 219, 254, 0.6);
+  --brand-border: rgba(255, 255, 255, 0.06);
+  --brand-testimonial-bg: rgba(255, 255, 255, 0.05);
+  --brand-testimonial-border: rgba(255, 255, 255, 0.1);
 }
 
 @theme inline {
@@ -12,15 +45,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
 }

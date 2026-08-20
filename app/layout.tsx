@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LanguageProvider } from "./components/scripts/LanguageContext";
+import { ThemeProvider } from "./components/scripts/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Teach App",
@@ -13,7 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+          <body>
+              <ThemeProvider>
+                <LanguageProvider>
+                    {children}
+                </LanguageProvider>
+              </ThemeProvider>
+            </body>
     </html>
   );
 }
