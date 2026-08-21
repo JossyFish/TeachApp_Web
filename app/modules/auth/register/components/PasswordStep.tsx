@@ -8,13 +8,11 @@ import {
   EyeOff, 
   CheckCircle,
   ArrowLeft,
-  CreditCard,
-  Calendar,
-  Shield,
-  Crown,
 } from 'lucide-react';
 import { useLanguage } from '@/app/components/scripts/LanguageContext';
 import styles from '../register.module.css';
+import { SubscriptionSection } from '@/app/components/ui/SubscriptionSection/SubscriptionSection';
+import { PaymentSection } from '@/app/components/ui/PaymentSection/PaymentSection';
 
 interface PasswordStepProps {
   formData: {
@@ -23,9 +21,9 @@ interface PasswordStepProps {
     cardNumber: string;
     cardExpiry: string;
     cardCvc: string;
-    subscription: 'monthly' | 'yearly';
+    subscription: 'monthly' | 'yearly' | 'vip';
   };
-  activeRole: 'student' | 'teacher'; // ← только student или teacher
+  activeRole: 'student' | 'teacher'; 
   setStep: (step: number) => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   handleCardChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -108,114 +106,18 @@ export function PasswordStep({
       {/* Teacher Payment Section */}
       {activeRole === 'teacher' && (
         <>
-          <div className={styles.paymentSection}>
-            <div className={styles.paymentHeader}>
-              <CreditCard size={18} />
-              <span>{t('payment_details')}</span>
-            </div>
-
-            <div className={styles.field}>
-              <label className={styles.fieldLabel}>{t('card_number')}</label>
-              <div className={styles.inputWrapper}>
-                <CreditCard size={16} className={styles.inputIcon} />
-                <input 
-                  type="text" 
-                  name="cardNumber"
-                  value={formData.cardNumber}
-                  onChange={handleCardChange}
-                  placeholder="1234 5678 9012 3456"
-                  className={styles.fieldInput} 
-                  maxLength={19}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className={styles.formRow}>
-              <div className={styles.field}>
-                <label className={styles.fieldLabel}>{t('card_expiry')}</label>
-                <div className={styles.inputWrapper}>
-                  <Calendar size={16} className={styles.inputIcon} />
-                  <input 
-                    type="text" 
-                    name="cardExpiry"
-                    value={formData.cardExpiry}
-                    onChange={handleExpiryChange}
-                    placeholder="MM/YY"
-                    className={styles.fieldInput} 
-                    maxLength={5}
-                    required
-                  />
-                </div>
-              </div>
-              <div className={styles.field}>
-                <label className={styles.fieldLabel}>{t('card_cvc')}</label>
-                <div className={styles.inputWrapper}>
-                  <Shield size={16} className={styles.inputIcon} />
-                  <input 
-                    type="password" 
-                    name="cardCvc"
-                    value={formData.cardCvc}
-                    onChange={handleChange}
-                    placeholder="•••"
-                    className={styles.fieldInput} 
-                    maxLength={4}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.subscriptionSection}>
-            <div className={styles.subscriptionHeader}>
-              <Crown size={18} />
-              <span>{t('subscription_plan')}</span>
-            </div>
-
-            <div className={styles.subscriptionOptions}>
-              <label className={`${styles.subscriptionOption} ${formData.subscription === 'monthly' ? styles.subscriptionOptionActive : ''}`}>
-                <input
-                  type="radio"
-                  name="subscription"
-                  value="monthly"
-                  checked={formData.subscription === 'monthly'}
-                  onChange={handleChange}
-                />
-                <div>
-                  <div className={styles.subscriptionName}>{t('monthly')}</div>
-                  <div className={styles.subscriptionPrice}>$29.99</div>
-                  <div className={styles.subscriptionDesc}>{t('monthly_desc')}</div>
-                </div>
-              </label>
-
-              <label className={`${styles.subscriptionOption} ${formData.subscription === 'yearly' ? styles.subscriptionOptionActive : ''}`}>
-                <input
-                  type="radio"
-                  name="subscription"
-                  value="yearly"
-                  checked={formData.subscription === 'yearly'}
-                  onChange={handleChange}
-                />
-                <div>
-                  <div className={styles.subscriptionName}>{t('yearly')}</div>
-                  <div className={styles.subscriptionPrice}>$299.99</div>
-                  <div className={styles.subscriptionDesc}>{t('yearly_desc')}</div>
-                  <div className={styles.subscriptionBadge}>{t('save_60')}</div>
-                </div>
-              </label>
-            </div>
-
-            <div className={styles.subscriptionTotal}>
-              <span>{t('total_due')}</span>
-              <span className={styles.subscriptionTotalPrice}>
-                {formData.subscription === 'monthly' ? '$29.99' : '$299.99'}
-                <span className={styles.subscriptionTotalPeriod}>
-                  /{formData.subscription === 'monthly' ? t('month') : t('year')}
-                </span>
-              </span>
-            </div>
-          </div>
+          <PaymentSection 
+            cardNumber={formData.cardNumber}
+            cardExpiry={formData.cardExpiry}
+            cardCvc={formData.cardCvc}
+            onCardChange={handleCardChange}
+            onExpiryChange={handleExpiryChange}
+            onCvcChange={handleChange}
+          />
+          <SubscriptionSection 
+            subscription={formData.subscription}
+            onChange={handleChange}
+          />
         </>
       )}
 

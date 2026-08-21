@@ -3,8 +3,12 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { LANGUAGE_MAP, LanguageCode, LANGUAGES } from '../constants/languages';
 
-// Позволяет вложенную структуру
-type TranslationRecord = Record<string, unknown>;
+// Тип для вложенных переводов
+type NestedTranslation = {
+  [key: string]: string | NestedTranslation;
+};
+
+type TranslationRecord = NestedTranslation;
 
 interface LanguageContextType {
   language: LanguageCode;
@@ -14,14 +18,17 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+// Кеш переводов
+let translationsCache: Record<LanguageCode, TranslationRecord> = {} as Record<LanguageCode, TranslationRecord>;
+
 // Функция для получения вложенного значения по ключу с точками
-const getNestedValue = (obj: Record<string, unknown>, path: string): string => {
+const getNestedValue = (obj: TranslationRecord, path: string): string => {
   const keys = path.split('.');
-  let current: unknown = obj;
+  let current: any = obj;
   
   for (const key of keys) {
     if (current && typeof current === 'object' && key in current) {
-      current = (current as Record<string, unknown>)[key];
+      current = current[key];
     } else {
       return '';
     }
@@ -32,16 +39,24 @@ const getNestedValue = (obj: Record<string, unknown>, path: string): string => {
 
 const loadTranslations = async (lang: LanguageCode): Promise<TranslationRecord> => {
   try {
+    if (translationsCache[lang]) {
+      return translationsCache[lang];
+    }
+
     const languageConfig = LANGUAGE_MAP[lang];
     
     if (!languageConfig) {
       console.warn(`Language ${lang} not supported, falling back to ru`);
       const fallback = await LANGUAGES[0].file();
-      return (fallback.default || fallback) as TranslationRecord;
+      const data = (fallback.default || fallback) as TranslationRecord;
+      translationsCache[lang] = data;
+      return data;
     }
     
     const module = await languageConfig.file();
-    return (module.default || module) as TranslationRecord;
+    const data = (module.default || module) as TranslationRecord;
+    translationsCache[lang] = data;
+    return data;
   } catch (error) {
     console.error(`Failed to load ${lang} translations:`, error);
     return {} as TranslationRecord;
@@ -51,6 +66,7 @@ const loadTranslations = async (lang: LanguageCode): Promise<TranslationRecord> 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<LanguageCode>('ru');
   const [translations, setTranslations] = useState<TranslationRecord>({});
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const savedLang = localStorage.getItem("language") as LanguageCode;
@@ -60,7 +76,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    loadTranslations(language).then(setTranslations);
+    loadTranslations(language).then((data) => {
+      setTranslations(data);
+      setIsLoaded(true);
+    });
     document.documentElement.lang = language;
   }, [language]);
 

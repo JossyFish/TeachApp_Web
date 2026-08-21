@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   GraduationCap, 
   Star, 
@@ -21,6 +21,7 @@ export default function Register() {
   const { translate } = useLanguage();
   const [activeRole, setActiveRole] = useState<Role>('student');
   const [step, setStep] = useState(1);
+  const [isMounted, setIsMounted] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -31,7 +32,6 @@ export default function Register() {
     expertise: '',
     experience: '',
     bio: '',
-    pricePerHour: '',
     cardNumber: '',
     cardExpiry: '',
     cardCvc: '',
@@ -39,6 +39,10 @@ export default function Register() {
   });
   const currentRole = ROLES[activeRole];
   const router = useRouter();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const t = (key: string) => translate(`auth.signup.${key}`);
 
@@ -65,7 +69,6 @@ export default function Register() {
     router.push('/');
   };
 
-  // Форматирование номера карты
   const formatCardNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, '');
     const groups = cleaned.match(/.{1,4}/g);
@@ -77,7 +80,6 @@ export default function Register() {
     setFormData({ ...formData, cardNumber: formatted });
   };
 
-  // Форматирование срока действия
   const formatExpiry = (value: string) => {
     const cleaned = value.replace(/\D/g, '');
     if (cleaned.length >= 2) {
@@ -90,6 +92,18 @@ export default function Register() {
     const formatted = formatExpiry(e.target.value);
     setFormData({ ...formData, cardExpiry: formatted });
   };
+
+  if (!isMounted) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.formPanel}>
+          <div className={styles.formWrapper}>
+            <div style={{ textAlign: 'center', padding: '40px' }}>Loading...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -202,7 +216,7 @@ export default function Register() {
             </p>
           </div>
 
-          {/* Role Tabs (only on step 1) */}
+          {/* Role Tabs */}
           {step === 1 && (
             <div className={styles.roleSection}>
               <label className={styles.roleLabel}>{t('sign_up_as')}</label>
@@ -250,15 +264,15 @@ export default function Register() {
                 />
               )
             ) : (
-            <PasswordStep 
+              <PasswordStep 
                 formData={formData}
-                activeRole={activeRole as 'student' | 'teacher'} // ← явное приведение
+                activeRole={activeRole as 'student' | 'teacher'}
                 setStep={setStep}
                 handleChange={handleChange}
                 handleCardChange={handleCardChange}
                 handleExpiryChange={handleExpiryChange}
                 handleSubmit={handleSubmit}
-                />
+              />
             )}
           </form>
 

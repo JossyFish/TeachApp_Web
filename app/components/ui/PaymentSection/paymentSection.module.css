@@ -1,0 +1,97 @@
+/* ====== PAYMENT SECTION ====== */
+.paymentSection {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px 0;
+}
+
+.paymentHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+/* ====== FIELD ====== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.fieldLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.fieldInput {
+  width: 100%;
+  padding: 10px 14px 10px 38px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.fieldInput:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.fieldInput::placeholder {
+  color: var(--text-muted);
+}
+
+/* ====== FORM ROW ====== */
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 480px) {
+  .paymentSection {
+    padding: 12px;
+  }
+
+  .formRow {
+    gap: 8px;
+  }
+
+  .fieldInput {
+    padding: 8px 12px 8px 34px;
+    font-size: 13px;
+  }
+
+  .inputIcon {
+    left: 10px;
+  }
+}

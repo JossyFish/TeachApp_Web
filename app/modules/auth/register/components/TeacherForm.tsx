@@ -4,7 +4,9 @@ import {
   Briefcase, 
   Clock, 
   FileText, 
-  DollarSign 
+  UserCircle,
+  Mail,
+  User
 } from 'lucide-react';
 import { useLanguage } from '@/app/components/scripts/LanguageContext';
 import styles from '../register.module.css';
@@ -17,7 +19,6 @@ interface TeacherFormProps {
     expertise: string;
     experience: string;
     bio: string;
-    pricePerHour: string;
   };
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   handleNext: (e: React.FormEvent) => void;
@@ -97,6 +98,7 @@ export function TeacherForm({ formData, handleChange, handleNext }: TeacherFormP
             <option value="ai_ml">AI & ML</option>
             <option value="finance">Finance</option>
             <option value="marketing">Marketing</option>
+            <option value="other">Other</option>
           </select>
         </div>
       </div>
@@ -134,24 +136,6 @@ export function TeacherForm({ formData, handleChange, handleNext }: TeacherFormP
             className={styles.fieldInput}
             rows={3}
             required
-          />
-        </div>
-      </div>
-
-      <div className={styles.field}>
-        <label className={styles.fieldLabel}>{t('price_per_hour')}</label>
-        <div className={styles.inputWrapper}>
-          <DollarSign size={16} className={styles.inputIcon} />
-          <input 
-            type="number" 
-            name="pricePerHour"
-            value={formData.pricePerHour}
-            onChange={handleChange}
-            placeholder={t('price_placeholder')}
-            className={styles.fieldInput} 
-            required
-            min="0"
-            step="0.01"
           />
         </div>
       </div>

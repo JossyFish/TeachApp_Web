@@ -36,7 +36,7 @@
         "learners": "Учеников",
         "satisfaction": "Удовлетворения",
         "title_step1": "Создайте аккаунт",
-        "subtitle_step1": "Присоединяйтесь бесплатно — кредитная карта не требуется",
+        "subtitle_step1": "Присоединяйтесь бесплатно ",
         "title_step2": "Защитите аккаунт",
         "subtitle_step2": "Выберите надежный пароль для защиты данных",
         "sign_up_as": "Зарегистрироваться как",
@@ -72,8 +72,8 @@
         "total_due": "Итого к оплате",
         "month": "мес",
         "year": "год",
-        "create_account_and_pay": "Создать аккаунт и оплатить ✓",
-        "create_account": "Создать аккаунт ✓",
+        "create_account_and_pay": "Создать аккаунт и оплатить",
+        "create_account": "Создать аккаунт",
         "expertise": "Область экспертизы",
         "expertise_placeholder": "Выберите область",
         "experience": "Опыт работы",
@@ -81,7 +81,10 @@
         "bio": "О себе",
         "bio_placeholder": "Расскажите о своем опыте...",
         "price_per_hour": "Цена за час ($)",
-        "price_placeholder": "Например: 50"
+        "price_placeholder": "Например: 50",
+        "vip": "VIP",
+        "vip_desc": "Премиум доступ со всеми функциями",
+        "vip_badge": "Лучший выбор"
     }
   },
   "roles": {

@@ -36,7 +36,7 @@
         "learners": "Learners",
         "satisfaction": "Satisfaction",
         "title_step1": "Create your account",
-        "subtitle_step1": "Free to join — no credit card required",
+        "subtitle_step1": "Free to join ",
         "title_step2": "Secure your account",
         "subtitle_step2": "Choose a strong password to protect your data",
         "sign_up_as": "Sign up as",
@@ -72,8 +72,8 @@
         "total_due": "Total Due",
         "month": "mo",
         "year": "yr",
-        "create_account_and_pay": "Create Account & Pay ✓",
-        "create_account": "Create Account ✓",
+        "create_account_and_pay": "Create Account & Pay",
+        "create_account": "Create Account",
         "expertise": "Expertise Area",
         "expertise_placeholder": "Select expertise",
         "experience": "Experience",
@@ -81,7 +81,10 @@
         "bio": "Bio",
         "bio_placeholder": "Tell about your experience...",
         "price_per_hour": "Price per hour ($)",
-        "price_placeholder": "e.g.: 50"
+        "price_placeholder": "e.g.: 50",
+        "vip": "VIP",
+        "vip_desc": "Premium access with all features",
+        "vip_badge": "Best Value"   
     }
   },
   "roles": {
