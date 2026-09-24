@@ -1,0 +1,182 @@
+/* confirmCode.module.css */
+/* Все стили независимы — используют только CSS-переменные и свои классы */
+
+/* ─────────── Контейнер ─────────── */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 24px 0;
+  box-sizing: border-box;
+}
+
+/* ─────────── Кнопка «Назад» ─────────── */
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary, #64748b);
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s ease, color 0.15s ease;
+  align-self: flex-start;
+}
+
+.backButton:hover {
+  background: var(--bg-hover, #f1f5f9);
+  color: var(--text-primary, #1e293b);
+}
+
+/* ─────────── Заголовок ─────────── */
+
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary, #1e293b);
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary, #64748b);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.email {
+  color: var(--text-primary, #1e293b);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.role {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--bg-accent, #eff6ff);
+  color: var(--accent, #2563eb);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ─────────── Поля ввода ─────────── */
+
+.inputs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 0 24px;
+}
+
+.input {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary, #1e293b);
+  border: 2px solid var(--border, #cbd5e1);
+  border-radius: 10px;
+  background: var(--bg-input, #ffffff);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--border-hover, #94a3b8);
+}
+
+.input:focus {
+  border-color: var(--accent, #2563eb);
+  box-shadow: 0 0 0 3px var(--accent-soft, rgba(37, 99, 235, 0.1));
+  background: var(--bg-input-focus, #ffffff);
+}
+
+.input.filled {
+  border-color: var(--accent, #2563eb);
+  background: var(--bg-accent, #eff6ff);
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─────────── Статусы ─────────── */
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-top: 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+.statusLoading {
+  background: var(--bg-accent, #eff6ff);
+  color: var(--accent, #2563eb);
+}
+
+.statusError {
+  background: var(--bg-error, #fef2f2);
+  color: var(--error, #dc2626);
+}
+
+.statusSuccess {
+  background: var(--bg-success, #f0fdf4);
+  color: var(--success, #16a34a);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* ─────────── Анимации ─────────── */
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────── Мобильные ─────────── */
+
+@media (max-width: 480px) {
+  .inputs {
+    gap: 6px;
+  }
+
+  .input {
+    width: 42px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+}

@@ -12,11 +12,16 @@ interface StudentFormProps {
     email: string;
   };
   activeRole: Role;
+  errors: {
+    firstName?: boolean;
+    lastName?: boolean;
+    email?: boolean;
+  };
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   handleNext: (e: React.FormEvent) => void;
 }
 
-export function StudentForm({ formData, activeRole, handleChange, handleNext }: StudentFormProps) {
+export function StudentForm({ formData, activeRole, errors, handleChange }: StudentFormProps) {
   const { translate } = useLanguage();
   const currentRole = ROLES[activeRole];
   const t = (key: string) => translate(`auth.signup.${key}`);
@@ -28,14 +33,14 @@ export function StudentForm({ formData, activeRole, handleChange, handleNext }: 
           <label className={styles.fieldLabel}>{t('first_name')}</label>
           <div className={styles.inputWrapper}>
             <UserCircle size={16} className={styles.inputIcon} />
-            <input 
-              type="text" 
+            <input
+              type="text"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
               placeholder={t('first_name_placeholder')}
-              className={styles.fieldInput} 
-              required
+              className={`${styles.fieldInput} ${errors.firstName ? styles.inputError : ''}`}
+              aria-invalid={!!errors.firstName}
             />
           </div>
         </div>
@@ -43,14 +48,14 @@ export function StudentForm({ formData, activeRole, handleChange, handleNext }: 
           <label className={styles.fieldLabel}>{t('last_name')}</label>
           <div className={styles.inputWrapper}>
             <User size={16} className={styles.inputIcon} />
-            <input 
-              type="text" 
+            <input
+              type="text"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
               placeholder={t('last_name_placeholder')}
-              className={styles.fieldInput} 
-              required
+              className={`${styles.fieldInput} ${errors.lastName ? styles.inputError : ''}`}
+              aria-invalid={!!errors.lastName}
             />
           </div>
         </div>
@@ -60,26 +65,27 @@ export function StudentForm({ formData, activeRole, handleChange, handleNext }: 
         <label className={styles.fieldLabel}>{t('email')}</label>
         <div className={styles.inputWrapper}>
           <Mail size={16} className={styles.inputIcon} />
-          <input 
-            type="email" 
+          <input
+            type="text"
+            inputMode="email"
+            autoComplete="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             placeholder={t('email_placeholder')}
-            className={styles.fieldInput} 
-            required
+            className={`${styles.fieldInput} ${errors.email ? styles.inputError : ''}`}
+            aria-invalid={!!errors.email}
           />
         </div>
       </div>
 
-      <button 
+      <button
         type="submit"
         className={styles.submitButton}
-        style={{ 
+        style={{
           background: `linear-gradient(135deg,${currentRole.color},${currentRole.color}dd)`,
-          boxShadow: `0 4px 24px ${currentRole.color}33`
+          boxShadow: `0 4px 24px ${currentRole.color}33`,
         }}
-        onClick={handleNext}
       >
         {t('continue')} →
       </button>

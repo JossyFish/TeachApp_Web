@@ -50,7 +50,6 @@
         "back": "Назад",
         "password": "Пароль",
         "password_placeholder": "Минимум 8 символов",
-        "password_strong": "Надежный пароль",
         "confirm_password": "Подтвердите пароль",
         "confirm_password_placeholder": "Повторите пароль",
         "terms_text": "Я соглашаюсь с Условиями использования и Политикой конфиденциальности",
@@ -73,7 +72,6 @@
         "month": "мес",
         "year": "год",
         "create_account_and_pay": "Создать аккаунт и оплатить",
-        "create_account": "Создать аккаунт",
         "expertise": "Область экспертизы",
         "expertise_placeholder": "Выберите область",
         "experience": "Опыт работы",
@@ -84,7 +82,17 @@
         "price_placeholder": "Например: 50",
         "vip": "VIP",
         "vip_desc": "Премиум доступ со всеми функциями",
-        "vip_badge": "Лучший выбор"
+        "vip_badge": "Лучший выбор",
+        "error_first_name_required": "Введите имя",
+        "error_last_name_required": "Введите фамилию",
+        "error_email_required": "Введите email",
+        "error_email_invalid": "Некорректный email",
+        "password_empty": "Введите пароль",
+        "password_very_weak": "Очень слабый",
+        "password_weak": "Слабый",
+        "password_medium": "Средний",
+        "password_strong": "Надёжный",
+        "password_very_strong": "Очень надёжный"
     }
   },
   "roles": {
