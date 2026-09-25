@@ -3,7 +3,7 @@ import { LoginResponse } from "../Models/Responses/LoginResponse";
 
 
 export const CreateStudent = async (name:string, lastName:string, email:string, password:string) => {
-    return apiFetch<LoginResponse>('/api/auth/register-student', {
+    return apiFetch('/auth/register-student', {
         method: 'POST',
         body: JSON.stringify({  
                     name: name,
@@ -13,11 +13,11 @@ export const CreateStudent = async (name:string, lastName:string, email:string, 
     });
 };
 
-export const ConfirmRegistration = async (email:string, сonfirmationCode:string) => {
-    return apiFetch<LoginResponse>('/api/auth/confirm-registration-code-student', {
+export const ConfirmRegistration = async (email:string, confirmationCode:string) => {
+    return apiFetch<LoginResponse>('/auth/confirm-registration-code-student', {
         method: 'POST',
         body: JSON.stringify({  
                     email: email,
-                    сonfirmationCode: сonfirmationCode }),
+                    confirmationCode: confirmationCode }),
     });
 };

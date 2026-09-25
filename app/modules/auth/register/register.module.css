@@ -6,7 +6,6 @@
   transition: background 0.3s ease;
 }
 
-/* ====== LEFT PANEL ====== */
 .brandPanel {
   display: none;
   flex-direction: column;
@@ -38,7 +37,6 @@
   margin-left: 5%;
 }
 
-/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -105,7 +103,6 @@
   transition: color 0.3s ease;
 }
 
-/* Testimonial */
 .testimonial {
   background: var(--brand-testimonial-bg);
   border: 1px solid var(--brand-testimonial-border);
@@ -171,7 +168,6 @@
   transition: color 0.3s ease;
 }
 
-/* Stats */
 .stats {
   display: flex;
   gap: 32px;
@@ -194,7 +190,6 @@
   transition: color 0.3s ease;
 }
 
-/* ====== RIGHT PANEL ====== */
 .formPanel {
   flex: 1;
   display: flex;
@@ -211,8 +206,6 @@
   max-width: 400px;
   position: relative;
 }
-
-/* ====== CONTROLS ====== */
 
 .desktopControls {
   display: none;
@@ -263,7 +256,6 @@
   gap: 8px;
 }
 
-/* ====== STEP INDICATOR ====== */
 .stepIndicator {
   display: flex;
   align-items: center;
@@ -295,7 +287,6 @@
   font-weight: 500;
 }
 
-/* ====== FORM HEADER ====== */
 .formHeader {
   margin-bottom: 28px;
 }
@@ -314,7 +305,6 @@
   transition: color 0.3s ease;
 }
 
-/* ====== ROLE TABS ====== */
 .roleSection {
   margin-bottom: 24px;
 }
@@ -363,7 +353,6 @@
   color: var(--role-color);
 }
 
-/* ====== FORM ====== */
 .form {
   display: flex;
   flex-direction: column;
@@ -484,7 +473,6 @@
   font-weight: 500;
 }
 
-/* Back Button */
 .backButton {
   display: flex;
   align-items: center;
@@ -503,7 +491,6 @@
   color: var(--text-primary);
 }
 
-/* Terms */
 .terms {
   margin: 4px 0;
 }
@@ -522,7 +509,6 @@
   margin-top: 1px;
 }
 
-/* Submit Button */
 .submitButton {
   width: 100%;
   padding: 14px;
@@ -540,7 +526,6 @@
   opacity: 0.9;
 }
 
-/* ====== DIVIDER ====== */
 .divider {
   display: flex;
   align-items: center;
@@ -560,7 +545,6 @@
   transition: background 0.3s ease;
 }
 
-/* ====== SOCIAL BUTTONS ====== */
 .socialButtons {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -600,7 +584,6 @@
   flex-shrink: 0;
 }
 
-/* ====== FOOTER ====== */
 .formFooter {
   text-align: center;
   font-size: 12px;
@@ -642,10 +625,6 @@
 .backLink svg {
   transform: rotate(180deg);
 }
-
-/* ============================================================
-   ====== RESPONSIVE ======
-   ============================================================ */
 
 @media (min-width: 1024px) {
   .brandPanel {
@@ -833,7 +812,7 @@
     width: 28px;
   }
 }
-/* ====== PAYMENT SECTION ====== */
+
 .paymentSection {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -852,7 +831,6 @@
   margin-bottom: 12px;
 }
 
-/* ====== SUBSCRIPTION SECTION ====== */
 .subscriptionSection {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);

@@ -8,7 +8,6 @@ import styles from './confirmCode.module.css';
 interface ConfirmCodeFormProps {
   email: string;
   role: 'student' | 'teacher';
-  // ✅ Родитель передаёт функцию
   confirmRegistration: (code: string) => Promise<void>;
   onSuccess: () => void;
   onBack: () => void;
@@ -16,13 +15,7 @@ interface ConfirmCodeFormProps {
 
 const CODE_LENGTH = 6;
 
-export function ConfirmCodeForm({
-  email,
-  role,
-  confirmRegistration,
-  onSuccess,
-  onBack,
-}: ConfirmCodeFormProps) {
+export function ConfirmCodeForm({email, role, confirmRegistration, onSuccess, onBack }: ConfirmCodeFormProps) {
   const { translate } = useLanguage();
   const t = (key: string) => translate(`auth.signup.${key}`);
 
@@ -36,7 +29,6 @@ export function ConfirmCodeForm({
   const code = useMemo(() => digits.join(''), [digits]);
   const isComplete = code.length === CODE_LENGTH && /^\d{6}$/.test(code);
 
-  // Автосабмит при заполнении всех 6 цифр
   useEffect(() => {
     if (!isComplete || isPending || success) return;
 
@@ -46,11 +38,9 @@ export function ConfirmCodeForm({
       try {
         await confirmRegistration(code);
         setSuccess(true);
-        // Небольшая задержка, чтобы показать success, потом onSuccess
         setTimeout(() => onSuccess(), 600);
       } catch (e: any) {
         setError(e?.message ?? t('confirm_error'));
-        // Очищаем поля при ошибке
         setDigits(Array(CODE_LENGTH).fill(''));
         inputsRef.current[0]?.focus();
       } finally {
@@ -59,7 +49,6 @@ export function ConfirmCodeForm({
     };
 
     submit();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isComplete]);
 
   const handleChange = (index: number, value: string) => {

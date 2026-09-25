@@ -31,18 +31,10 @@ interface PasswordStepProps {
   handleSubmit: (e: React.FormEvent) => void;
 }
 
-export function PasswordStep({ 
-  formData, 
-  activeRole, 
-  setStep, 
-  handleChange, 
-  handleCardChange,
-  handleExpiryChange,
-  handleSubmit 
-}: PasswordStepProps) {
+export function PasswordStep({ formData, activeRole, setStep, handleChange, handleCardChange,handleExpiryChange, handleSubmit  }: PasswordStepProps) {
   const { translate } = useLanguage();
   const [showPassword, setShowPassword] = useState(false);
-  const [agreeToTerms, setAgreeToTerms] = useState(false);   // ← новое
+  const [agreeToTerms, setAgreeToTerms] = useState(false);  
   const t = (key: string) => translate(`auth.signup.${key}`);
 
   const strength = useMemo(
@@ -54,7 +46,6 @@ export function PasswordStep({
     formData.confirmPassword.length > 0 &&
     formData.password === formData.confirmPassword;
 
-  // Условия для активации кнопки
   const isSubmitDisabled =
     !agreeToTerms ||
     !passwordsMatch ||
@@ -149,7 +140,6 @@ export function PasswordStep({
         </>
       )}
 
-      {/* Реальный checkbox */}
       <div className={styles.terms}>
         <label className={styles.termsLabel}>
           <input

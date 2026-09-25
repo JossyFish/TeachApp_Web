@@ -92,7 +92,18 @@
         "password_weak": "Слабый",
         "password_medium": "Средний",
         "password_strong": "Надёжный",
-        "password_very_strong": "Очень надёжный"
+        "password_very_strong": "Очень надёжный",
+        "title_confirm": "Подтверждение email",
+        "subtitle_confirm": "Введите 6-значный код из письма",
+        "confirm_email_title": "Подтверждение email",
+        "confirm_email_subtitle": "Мы отправили 6-значный код на",
+        "confirm_checking": "Проверяем код...",
+        "confirm_error": "Неверный или истёкший код",
+        "confirm_success": "Email подтверждён!",
+        "student": "Студент",
+        "teacher": "Преподаватель",
+        "step": "Шаг",
+        "of": "из"
     }
   },
   "roles": {

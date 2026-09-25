@@ -92,7 +92,18 @@
         "password_weak": "Weak",
         "password_medium": "Medium",
         "password_strong": "Strong",
-        "password_very_strong": "Very strong"
+        "password_very_strong": "Very strong",
+        "title_confirm": "Email confirmation",
+        "subtitle_confirm": "Enter the 6-digit code from your email",
+        "confirm_email_title": "Email confirmation",
+        "confirm_email_subtitle": "We sent a 6-digit code to",
+        "confirm_checking": "Checking code...",
+        "confirm_error": "Invalid or expired code",
+        "confirm_success": "Email confirmed!",
+        "student": "Student",
+        "teacher": "Teacher",
+        "step": "Step",
+        "of": "of"
     }
   },
   "roles": {

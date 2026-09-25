@@ -25,9 +25,12 @@ async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> 
     throw new ApiError(message, res.status, errorBody);
   }
 
-  if (res.status === 204) return undefined as T;
+  if (res.status === 204 || res.status === 202) return undefined as T;
 
-  return res.json();
+  const text = await res.text();
+  if (!text) return undefined as T;
+
+  return JSON.parse(text) as T;
 }
 
 export class ApiError extends Error {

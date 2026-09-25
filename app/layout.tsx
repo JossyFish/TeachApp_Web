@@ -3,6 +3,10 @@ import "./globals.css";
 import { LanguageProvider } from "./components/scripts/LanguageContext";
 import { ThemeProvider } from "./components/scripts/ThemeContext";
 import { TanstackProvider } from "./components/scripts/TanstackProvider";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Teach App",
@@ -16,7 +20,7 @@ export default function RootLayout({
 }) {
   
   return (
-    <html lang="ru">
+    <html lang="ru" className={cn("font-sans", geist.variable)}>
           <body>
               <ThemeProvider>
                 <LanguageProvider>
